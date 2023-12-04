@@ -2,11 +2,22 @@
 @contentType = application/json
 
 ### CREATE POST
-POST {{baseUrl}}/api/v1/posts 
+POST {{baseUrl}}/api/posts 
 content-type: application/json
 accept: application/json
 
 {
-    "title": "title from request",
-    "content": "content from request",
+    "title": "title from request 2",
+    "content": "content from request 2" ,
 }
+
+### Find All
+GET {{baseUrl}}/api/posts 
+content-type: application/json
+accept: application/json
+
+
+### Find By Id
+GET {{baseUrl}}/api/posts/5 
+content-type: application/json
+accept: application/json

@@ -4,6 +4,8 @@ import "gorm.io/gorm"
 
 type Repository interface {
 	Save(post Post) (Post, error)
+	FindAll() ([]Post, error)
+	FindById(postID int) ([]Post, error)
 }
 
 type repository struct {
@@ -21,4 +23,29 @@ func (r *repository) Save(post Post) (Post, error) {
 	}
 
 	return post, nil
+}
+
+func (r *repository) FindAll() ([]Post, error) {
+	var posts []Post
+
+	err := r.db.Find(&posts).Error
+
+	if err != nil {
+		return posts, err
+	}
+
+	return posts, nil
+
+}
+
+func (r *repository) FindById(postId int) ([]Post, error) {
+	var posts []Post
+
+	err := r.db.Where("id = ?", postId).Find(&posts).Error
+
+	if err != nil {
+		return posts, err
+	}
+
+	return posts, nil
 }
