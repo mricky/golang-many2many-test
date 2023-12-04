@@ -1,0 +1,12 @@
+@baseUrl = http://localhost:8080
+@contentType = application/json
+
+### CREATE POST
+POST {{baseUrl}}/api/v1/posts 
+content-type: application/json
+accept: application/json
+
+{
+    "title": "title from request",
+    "content": "content from request",
+}
