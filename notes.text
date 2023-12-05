@@ -1,0 +1,28 @@
+refactore structure project
+
+- request  
+- handler  maping input dari user -> struct input
+- service mapping dari struct input ke struct Refresentasi table supaya bisa di simpan di repository
+- repository
+- db
+
+
+Test Your repository
+postRepository := post.NewRepository(db)
+
+	post := post.Post{
+		TITLE:   "Test Title",
+		CONTENT: "Test Content",
+	}
+
+	postRepository.Save(post)
+
+## Test service
+postRepository := post.NewRepository(db)
+
+userService := post.NewService(postRepository)
+postInput := post.PostInput{}
+postInput.TITLE = "TITLE FROM SERVICE"
+postInput.CONTENT = "CONTENT FROM SERVICE"
+
+userService.CreatePost(postInput)

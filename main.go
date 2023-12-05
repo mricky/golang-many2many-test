@@ -43,6 +43,8 @@ func main() {
 	api.POST("/posts", postHandler.CreatePost)
 	api.GET("/posts", postHandler.FindAll)
 	api.GET("/posts/:id", postHandler.FindById)
-	// router.GET("handler", handler)
+	api.PUT("/posts/:id", postHandler.Update)
+	api.DELETE("/posts/:id", postHandler.Delete)
+
 	router.Run()
 }

@@ -1,11 +1,15 @@
 package post
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 type Repository interface {
 	Save(post Post) (Post, error)
 	FindAll() ([]Post, error)
 	FindById(postID int) ([]Post, error)
+	Update(postID int, post Post) (Post, error)
+	Delete(postID int) int64
 }
 
 type repository struct {
@@ -25,6 +29,23 @@ func (r *repository) Save(post Post) (Post, error) {
 	return post, nil
 }
 
+func (r *repository) Update(postId int, post Post) (Post, error) {
+
+	err := r.db.Where("id = ?", postId).Updates(&post).Error
+
+	if err != nil {
+		return post, err
+	}
+
+	return post, nil
+}
+
+func (r *repository) Delete(postId int) int64 {
+	var post Post
+	result := r.db.Where("id = ?", postId).Delete(&post)
+
+	return result.RowsAffected
+}
 func (r *repository) FindAll() ([]Post, error) {
 	var posts []Post
 

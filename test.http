@@ -9,7 +9,38 @@ accept: application/json
 {
     "title": "title from request 2",
     "content": "content from request 2" ,
+    "tags" : [
+        {
+            "label" : "tag 1",
+        },
+        {
+            "label" : "tag 2"
+        }
+    ]
 }
+
+### UPDATE POST
+POST {{baseUrl}}/api/posts/10 
+content-type: application/json
+accept: application/json
+
+{
+    "title": "title from request update",
+    "content": "content from request update" ,
+    "tags" : [
+        {
+            "label" : "tag 1",
+        },
+        {
+            "label" : "tag 2"
+        }
+    ]
+}
+
+### DELETE POST
+POST {{baseUrl}}/api/posts/10 
+content-type: application/json
+accept: application/json
 
 ### Find All
 GET {{baseUrl}}/api/posts 
